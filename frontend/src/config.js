@@ -1,2 +1,2 @@
-const BASE_URL = 'https://sql307.infinityfree.com';
+const BASE_URL = 'https://autorack.proxy.rlwy.net';
 export default BASE_URL;

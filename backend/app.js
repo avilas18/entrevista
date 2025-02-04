@@ -9,10 +9,11 @@ app.use(bodyParser.json());
 
 // Conexión a MySQL
 const connection = mysql.createConnection({
-    host: 'sql307.infinityfree.com',
-    user: 'if0_38240084',
-    password: 'IeMiIabYTvQs1',
-    database: 'if0_38240084_XXX'
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    port: process.env.MYSQL_PORT || 3306
 });
 
 connection.connect((err) => {
