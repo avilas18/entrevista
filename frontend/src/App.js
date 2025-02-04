@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import './App.css'; // Importa el archivo CSS
+import './App.css'; 
+import BASE_URL from './config';
 
 function Clientes() {
     const [clientes, setClientes] = useState([]);
@@ -15,13 +16,13 @@ function Clientes() {
     }, []);
 
     const fetchClientes = () => {
-        axios.get('http://localhost:5000/clientes')
+        axios.get(`${BASE_URL}/clientes`)
             .then(response => setClientes(response.data))
             .catch(error => console.error(error));
     };
 
     const agregarCliente = () => {
-        axios.post('http://localhost:5000/clientes', { nombre, telefono, email })
+        axios.post(`${BASE_URL}/clientes`, { nombre, telefono, email })
             .then(response => {
                 setClientes([...clientes, { id: response.data.id, nombre, telefono, email }]);
                 setNombre('');
@@ -32,7 +33,7 @@ function Clientes() {
     };
 
     const eliminarCliente = (id) => {
-        axios.delete(`http://localhost:5000/clientes/${id}`)
+        axios.delete(`${BASE_URL}/clientes/${id}`)
             .then(() => {
                 setClientes(clientes.filter(cliente => cliente.id !== id));
             })
@@ -47,7 +48,7 @@ function Clientes() {
     };
 
     const actualizarCliente = () => {
-        axios.put(`http://localhost:5000/clientes/${editando.id}`, { nombre, telefono, email })
+        axios.put(`${BASE_URL}/clientes/${editando.id}`, { nombre, telefono, email })
             .then(() => {
                 fetchClientes();
                 setEditando(null);
@@ -124,13 +125,13 @@ function Citas() {
     }, []);
 
     const fetchCitas = () => {
-        axios.get('http://localhost:5000/citas')
+        axios.get(`${BASE_URL}/citas`)
             .then(response => setCitas(response.data))
             .catch(error => console.error(error));
     };
 
     const fetchClientes = () => {
-        axios.get('http://localhost:5000/clientes')
+        axios.get(`${BASE_URL}/clientes`)
             .then(response => setClientes(response.data))
             .catch(error => console.error(error));
     };
@@ -157,7 +158,7 @@ function Citas() {
 
         console.log('Frontend - Datos antes de enviar:', citaData);
 
-        axios.post('http://localhost:5000/citas', citaData)
+        axios.post(`${BASE_URL}/citas`, citaData)
             .then(response => {
                 setCitas([...citas, { id: response.data.id, ...citaData }]);
                 setClienteId('');
@@ -173,7 +174,7 @@ function Citas() {
     };
 
     const eliminarCita = (id) => {
-        axios.delete(`http://localhost:5000/citas/${id}`)
+        axios.delete(`${BASE_URL}/citas/${id}`)
             .then(() => {
                 setCitas(citas.filter(cita => cita.id !== id));
             })
@@ -198,7 +199,7 @@ function Citas() {
             estado: estado
         };
 
-        axios.put(`http://localhost:5000/citas/${editando.id}`, citaActualizada)
+        axios.put(`${BASE_URL}/citas/${editando.id}`, citaActualizada)
             .then(() => {
                 fetchCitas();
                 setEditando(null);
