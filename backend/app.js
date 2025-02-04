@@ -9,10 +9,10 @@ app.use(bodyParser.json());
 
 // Conexión a MySQL
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'peluqueria_anita'
+    host: 'sql307.infinityfree.com',
+    user: 'if0_38240084',
+    password: 'IeMiIabYTvQs1',
+    database: 'if0_38240084_XXX'
 });
 
 connection.connect((err) => {
@@ -185,7 +185,6 @@ app.put('/citas/:id', (req, res) => {
     );
 });
 
-// Iniciar servidor
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
