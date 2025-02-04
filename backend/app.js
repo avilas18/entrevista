@@ -4,7 +4,14 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://entrevista-hazel.vercel.app', // Reemplaza con tu dominio real de Vercel
+        'http://localhost:3000'
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(bodyParser.json());
 
 // Conexión a MySQL
