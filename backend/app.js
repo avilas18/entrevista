@@ -6,7 +6,7 @@ const mysql = require('mysql2');
 const app = express();
 app.use(cors({
     origin: [
-        'https://entrevista-hazel.vercel.app', // Reemplaza con tu dominio real de Vercel
+        'https://entrevista-hazel.vercel.app',
         'http://localhost:3000'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
